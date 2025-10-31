@@ -1,0 +1,16 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: ftwitter
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ftwitter
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+
+
