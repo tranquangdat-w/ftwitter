@@ -16,7 +16,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,38 +25,34 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Builder
 public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_id")
-  private Integer userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private Integer userId;
 
-  @Column(name = "first_name")
-  private String firstName; 
+    @Column(name = "first_name")
+    private String firstName;
 
-  @Column(name = "last_name")
-  private String lastName;
+    @Column(name = "last_name")
+    private String lastName;
 
-  @Column(unique = true)
-  private String email;
+    @Column(unique = true, nullable = false)
+    private String email;
 
-  private String phone;
+    private String phone;
 
-  @Column(name = "dob")
-  private Date dateOfBirth;
+    @Column(name = "dob")
+    private Date dateOfBirth;
 
-  @Column(unique = true)
-  private String username;
+    @Column(unique = true, nullable = false)
+    private String username;
 
-  @JsonIgnore
-  private String password;
+    @JsonIgnore
+    private String password;
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-    name = "user_role_junction",
-    joinColumns = {@JoinColumn(name="user_id")},
-    inverseJoinColumns = {@JoinColumn(name="role_id")}
-  )
-  private Set<Role> authorities = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role_junction", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "role_id") })
+    private Set<Role> authorities = new HashSet<>();
 }

@@ -7,4 +7,5 @@ import com.ftwitter.wangdat.models.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
+    public Role findByAuthority(String authority);
 }
